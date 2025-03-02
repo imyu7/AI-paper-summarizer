@@ -18,7 +18,7 @@ jobs:
       - run: git-pr-release
         env:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          GIT_PR_RELEASE_BRANCH_PRODUCTION: develop
+          GIT_PR_RELEASE_BRANCH_PRODUCTION: prd
           GIT_PR_RELEASE_BRANCH_STAGING: main
           GIT_PR_RELEASE_LABELS: release
           GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release.erb

@@ -1,0 +1,34 @@
+name: "Lint/Test"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "AI-paper-summarizer/**"
+      - ".github/workflows/test.yaml"
+
+jobs:
+  test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Python dependencies
+        run: |
+          pip install -U pip
+          pip install poetry
+          poetry install
+
+      - name: Run lint
+        run: make lint
+
+      - name: Run tests
+        run: make test

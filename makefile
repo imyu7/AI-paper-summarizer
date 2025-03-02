@@ -1,11 +1,10 @@
 .PHONY: lint
-lint: ## run tests with poetry (isort, black, pflake8, mypy)
-	poetry run black .
-	poetry run isort .
-	poetry run flake8 . --exclude=.venv,.git,__pycache__,.mypy_cache --ignore=E203,E501,W503,E704
-	poetry run mypy . --explicit-package-bases
+lint: ## run lint with poetry (ruff, mypy)
+	poetry run ruff format src
+	poetry run ruff check --fix src
+	poetry run mypy src --explicit-package-bases
 
 
 .PHONY: test
 test: ## run tests with poetry
-	PYTHONPATH=. poetry run pytest tests/
+	poetry run pytest tests
